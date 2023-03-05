@@ -1,0 +1,38 @@
+* suppose main branch is develop
+* we want to start working on test branch
+
+1. go to develop branch in local
+2. git pull origin develop
+3. git checkout -b test   // creation of test branch to start work
+4. make changes in this test branch
+5. git commit -m "commit msg" // use --amend to keep all changes in single commit
+6. git pull --rebase origin develop // always do this before pushing changes into remote
+7. git push or (git push --set-upstream origin test) for first time push // this will push changes into remote and create pull request
+
+
+// git merge
+-> git merge <branch to merge> -> this will create new commit id with all the history
+                                   of commits from <branch to merge>
+
+//  git --squash
+-> git merge --squash <branch to merge> -> this will not create new commit id,
+                                            it will just bring all the chenges from <branch to merge> to
+                                            current branch, it will not store history of commits from <branch to merge>
+
+//  git --soft
+--> git reset --soft <commit id> -> this will move head of current branch to specified commit id and put all the changes made after
+                                    specified commit id into local without removing them
+
+// git --hard
+--> git reset --hard <commit id> -> this will move head of current branch to specified commit id and remove all the changes made after
+                                    specified commit id from local permanently
+
+// git stash
+--> git stash push -m "msg" -> stash the changes from local into local stack
+
+// git rebase
+--> git rebase <branch name> -> rebase the origin of current branch to latest commit of specified branch in local
+--> git pull --rebase origin <branch name>  -> rebase the origin of current branch to latest commit of specified branch from remote
+--> git rebase --onto <commit id> <branch name> ->   rebase the origin of current branch to specified commit id of specified branch from remote
+
+
